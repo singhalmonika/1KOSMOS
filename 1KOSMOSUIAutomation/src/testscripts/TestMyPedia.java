@@ -21,6 +21,7 @@ import org.apache.commons.io.FileUtils;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
+import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterTest;
 
@@ -80,12 +81,12 @@ public class TestMyPedia {
 		objLogin.verifyTextChangeOnLanguageChange(continueLabelText);
 		objLogin.setDefaultLanguage();
 		objLogin.setupParentSupport();
+		objCreateAccount.clickCreateAccountButton();
 		
     }
 	
 	@Test(dependsOnMethods = {"closeTheIframe","verifyLanguageDropdown"}, dataProvider = "createAccount")
 	public void createNewAccount(String firstName,String lastName, String emailAddress, String parentUserName,String password,String confirmPassword) {
-		objCreateAccount.clickCreateAccountButton();
 		//objCreateAccount.waitForLoaderToDisappear();
 		objCreateAccount.createNewUserAccount(firstName,lastName,emailAddress,parentUserName,password,confirmPassword);
 		
@@ -94,7 +95,7 @@ public class TestMyPedia {
 	
 
 	@AfterTest
-	public void teardown(ITestResult result) {
+	public void teardown(ITestContext test) {
 		
 		try{
 			
@@ -105,16 +106,17 @@ public class TestMyPedia {
 			
 			// Copy files to specific location 
 			// result.getName() will return name of test case so that screenshot name will be same as test case name
-			FileUtils.copyFile(srcFile, new File(Util.cwd+"/src/screenshots/"+result.getName()+".png"));
+			FileUtils.copyFile(srcFile, new File(Util.cwd+"/src/screenshots/"+test.getName()+".png"));
 			System.out.println("Successfully captured a screenshot");
 			
 		}catch (Exception e){
 			
 			System.out.println("Exception while taking screenshot "+e.getMessage());
 		} 
-}
-		// driver.close();
-		// driver.quit();
+
+		 driver.close();
+		 driver.quit();
+	}
 	}
 
 

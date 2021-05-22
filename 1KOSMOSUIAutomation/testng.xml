@@ -1,13 +1,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="WalletHub test suite" parallel="false" preserve-order="true">
-  <test name="Facebook Status">
+<suite name="1KOSMOS test suite" parallel="false" preserve-order="true">
+  <test name="TestMyPedia">
     <classes>
-     <class name="testscripts.PostFacebookStatus"/>    
-    </classes>
-  </test>
-  <test name="WalleHub Review">
-    <classes>
-     <class name="testscripts.PostReviewWalletHub"/>
+     <class name="testscripts.TestMyPedia"/>    
     </classes>
   </test>
 </suite>

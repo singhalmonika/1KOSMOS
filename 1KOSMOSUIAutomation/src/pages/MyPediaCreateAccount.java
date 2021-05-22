@@ -26,10 +26,10 @@ public class MyPediaCreateAccount {
 	@FindBy(xpath = "//input[contains(@id,'Emailaddress')]")
 	WebElement emailAddress;
 	
-	@FindBy(xpath ="//input[contains(@id,'Createparentusername')]")
+	@FindBy(xpath ="//label[text()='Create parent username']/../input")
 	WebElement parentUserName;
 	
-	@FindBy(xpath ="//input[contains(@id,'Createparentpassword')]")
+	@FindBy(xpath ="//label[text()='Create parent password']/../input")
 	WebElement password;
 	
 	@FindBy(xpath ="//input[contains(@id,'Confirmpassword')]")
@@ -58,6 +58,7 @@ public class MyPediaCreateAccount {
 
 	public void createNewUserAccount(String firstName, String lastName, String emailAddress, String parentUserName,
 			String password, String confirmPassword) {
+		driver.navigate().refresh();
 		this.firstName.sendKeys(firstName);
 		this.lastName.sendKeys(lastName);
 		this.emailAddress.sendKeys(emailAddress);
