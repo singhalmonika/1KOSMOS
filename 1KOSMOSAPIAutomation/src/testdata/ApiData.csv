@@ -1,0 +1,2 @@
+TenantID,Resource,StatusCode,SchemaFile
+1kosmos,/api/v3/rest/default/eula,200,eula_schema.json
