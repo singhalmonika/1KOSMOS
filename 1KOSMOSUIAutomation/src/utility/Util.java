@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.io.FilenameUtils;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
@@ -31,7 +32,7 @@ public class Util {
 	
 	public static String getDataFromPropertyFile(String filePath,String localizeKey) throws IOException {
 		
-		FileReader readerProp=new FileReader(cwd+filePath);  
+		FileReader readerProp=new FileReader(cwd+FilenameUtils.separatorsToSystem(filePath));  
 	    Properties objProp=new Properties();  
 	    objProp.load(readerProp);  
 	    return objProp.getProperty(localizeKey);
@@ -47,7 +48,7 @@ public class Util {
 	
 	public static Object[][]  readCSVFile(String filePath) throws IOException, CsvException{
 		
-		FileReader filereader = new FileReader(cwd+filePath);
+		FileReader filereader = new FileReader(cwd+FilenameUtils.separatorsToSystem(filePath));
 		CSVReader csvReader = new CSVReaderBuilder(filereader).withSkipLines(1).build();
 		List<String[]> csvFullFileData = csvReader.readAll();
 		int rowsCSV = csvFullFileData.size();
